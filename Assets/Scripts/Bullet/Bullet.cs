@@ -25,15 +25,14 @@ public class Bullet : MonoBehaviour
         m_Rb.constraints = RigidbodyConstraints.FreezeAll;
         
         int obstacleLayer = LayerMask.NameToLayer("Obstacle");
-        int bubbleLayer = LayerMask.NameToLayer("Bubble");
-        
+        int balloonLayer = LayerMask.NameToLayer("Balloon");
         if (collision.gameObject.layer == obstacleLayer)
         {
             m_Animator.SetBool(Animator_Impact, true);
             Destroy(gameObject, 1f);
         }
         
-        if (collision.gameObject.layer == bubbleLayer)
+        if (collision.gameObject.layer == balloonLayer)
         {
             Destroy(gameObject);
         }
