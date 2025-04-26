@@ -4,7 +4,8 @@ public class BalloonHit : MonoBehaviour
 {
     [SerializeField] private GameObject m_SmallerBalloonPrefab;
     
-    private Rigidbody m_Rb;
+    private Rigidbody m_Rb; 
+    private Collider m_Collider;
     private Animator m_Animator;
     private static int Animator_Pop = Animator.StringToHash("POP");
     [SerializeField] private float popSizeAnimation = 5f;
@@ -12,6 +13,7 @@ public class BalloonHit : MonoBehaviour
     void Awake()
     {
         m_Rb = GetComponent<Rigidbody>();
+        m_Collider = GetComponent<Collider>();
         m_Animator = GetComponent<Animator>();
     }
 
@@ -21,6 +23,7 @@ public class BalloonHit : MonoBehaviour
         if (collision.gameObject.layer == bulletLayer)
         {
             m_Rb.constraints = RigidbodyConstraints.FreezeAll;
+            m_Collider.enabled = false;
             
             // Adapt pop animation to balloon size
             transform.localScale = new Vector3(popSizeAnimation, popSizeAnimation, 1f);
