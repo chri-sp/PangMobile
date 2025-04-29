@@ -18,6 +18,8 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
+        
         m_Horizontal = Input.GetAxisRaw("Horizontal");
         Flip();
         
@@ -27,12 +29,12 @@ public class CharacterMovement : MonoBehaviour
         m_Animator.SetBool(Animator_Walk, bWalk);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         m_Rb.linearVelocity = new Vector2(m_Horizontal * m_Speed, m_Rb.linearVelocity.y);
     }
     
-    private void Flip()
+    void Flip()
     {
         if ((m_Horizontal > 0f && !m_InRightDirection) || (m_Horizontal < 0f && m_InRightDirection))
         {
@@ -44,3 +46,4 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 }
+

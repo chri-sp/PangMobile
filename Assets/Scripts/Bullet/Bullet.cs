@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
         m_Animator = GetComponent<Animator>();
     }
     
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         m_Rb.linearVelocity = transform.up * m_Speed;
     }

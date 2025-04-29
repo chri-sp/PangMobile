@@ -27,6 +27,8 @@ public class CharacterShooting : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
+        
         if (Input.GetKeyDown(KeyCode.S) && m_CanShoot)
         {
             Shoot();
