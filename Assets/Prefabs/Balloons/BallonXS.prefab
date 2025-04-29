@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7670449854693521655, guid: c50fe7e286f7cdb4b850bfd0c6c8bd2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.27
+      value: 7.08
       objectReference: {fileID: 0}
     - target: {fileID: 7670449854693521655, guid: c50fe7e286f7cdb4b850bfd0c6c8bd2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.91
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: 7670449854693521655, guid: c50fe7e286f7cdb4b850bfd0c6c8bd2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -68,8 +68,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1529086528590891439, guid: c50fe7e286f7cdb4b850bfd0c6c8bd2d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7300253330530281063, guid: c50fe7e286f7cdb4b850bfd0c6c8bd2d, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 900801201843729266}
   m_SourcePrefab: {fileID: 100100000, guid: c50fe7e286f7cdb4b850bfd0c6c8bd2d, type: 3}
+--- !u!1 &8811592692871218659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7300253330530281063, guid: c50fe7e286f7cdb4b850bfd0c6c8bd2d, type: 3}
+  m_PrefabInstance: {fileID: 2235656129060987780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &900801201843729266
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811592692871218659}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.04
+  m_Height: 0.07
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.035, z: 0}
