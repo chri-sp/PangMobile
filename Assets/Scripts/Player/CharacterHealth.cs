@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour
@@ -13,6 +13,11 @@ public class CharacterHealth : MonoBehaviour
     }
 
     void PlayerHit()
+    {
+        Death();
+    }
+
+    void Death()
     {
         GameManager.Instance.GameOver();
     }
