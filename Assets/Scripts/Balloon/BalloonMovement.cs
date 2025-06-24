@@ -41,7 +41,7 @@ public class BalloonMovement : MonoBehaviour
         }
 
         // Invert balloon direction if collision normal is almost horizontal
-        if (Mathf.Abs(Vector3.Dot(normal, Vector3.right)) > 0.9f)
+        if (Mathf.Abs(Vector3.Dot(normal, Vector3.right)) > 0.8f)
             m_MoveDir = -m_MoveDir;
     }
 
