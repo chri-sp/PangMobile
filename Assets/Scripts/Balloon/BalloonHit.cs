@@ -3,6 +3,8 @@ using UnityEngine;
 public class BalloonHit : MonoBehaviour
 {
     [SerializeField] private GameObject m_SmallerBalloonPrefab;
+    [SerializeField] private int _points = 100;
+    
     
     private Rigidbody m_Rb; 
     private Collider m_Collider;
@@ -33,6 +35,8 @@ public class BalloonHit : MonoBehaviour
             {
                 SpawnSmallerBalloons();
             }
+            
+            GameManager.Instance.UpdateScore(_points);
 
             Destroy(gameObject, 0.5f);
         }

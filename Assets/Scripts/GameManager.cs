@@ -11,15 +11,22 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    private int _score = 0;
+
+    private ScoreUI _scoreUI;
+
     private GameState _currentState = GameState.Playing;
     public GameState CurrentState => _currentState;
-    
+
     public static event Action<bool> OnPauseChanged;
     public static event Action OnGameOver;
-    
+
+    public static event Action<int> OnScoreUpdate;
+
     private static GameManager _instance;
-    public static GameManager Instance 
-    { 
+
+    public static GameManager Instance
+    {
         get { return _instance; }
     }
 
@@ -30,11 +37,11 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        
+
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
-    
+
     void Update()
     {
         HandlePauseResumeInput();
@@ -46,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             RestartGame();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (_currentState == GameState.GameOver)
@@ -65,15 +72,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         OnGameOver?.Invoke();
     }
-    
+
     public void RestartGame()
     {
-        if (_currentState!= GameState.GameOver) return;
+        if (_currentState != GameState.GameOver) return;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
         _currentState = GameState.Playing;
     }
-    
+
     public void PauseGame()
     {
         if (_currentState != GameState.Playing) return;
@@ -81,7 +88,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         OnPauseChanged?.Invoke(true);
     }
-    
+
     public void ResumeGame()
     {
         if (_currentState != GameState.Paused) return;
@@ -89,4 +96,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         OnPauseChanged?.Invoke(false);
     }
+
+    public void UpdateScore(int value)
+    {
+        _score += value;
+        OnScoreUpdate?.Invoke(_score);
+    }
+
+    public int GetScore()
+    {
+        return _score;
+    }
+    
 }
