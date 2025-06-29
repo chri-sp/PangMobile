@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        HandlePauseResumeInput();
+        //HandlePauseResumeInput();
     }
 
     void HandlePauseResumeInput()
