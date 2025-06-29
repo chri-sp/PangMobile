@@ -15,11 +15,15 @@ public class GameManager : MonoBehaviour
 
     private ScoreUI _scoreUI;
 
+    private int _ballCount = 1;
+
     private GameState _currentState = GameState.Playing;
     public GameState CurrentState => _currentState;
 
     public static event Action<bool> OnPauseChanged;
     public static event Action OnGameOver;
+
+    public static event Action OnVictory;
 
     public static event Action<int> OnScoreUpdate;
 
@@ -39,7 +43,6 @@ public class GameManager : MonoBehaviour
         }
 
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
@@ -103,9 +106,28 @@ public class GameManager : MonoBehaviour
         OnScoreUpdate?.Invoke(_score);
     }
 
+    void Victory()
+    {
+        OnVictory?.Invoke();
+    }
+
     public int GetScore()
     {
         return _score;
     }
-    
+
+    public void RegisterBall()
+    {
+        _ballCount++;
+    }
+
+    public void UnregisterBall()
+    {
+        _ballCount--;
+
+        if (_ballCount == 0)
+        {
+            Victory();
+        }
+    }
 }

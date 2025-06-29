@@ -11,11 +11,13 @@ public class UI_Manager : MonoBehaviour
     void OnEnable()
     {
         GameManager.OnGameOver += showGameOver;
+        GameManager.OnVictory += showVictory;
     }
 
     void OnDisable()
     {
         GameManager.OnGameOver -= showGameOver;
+        GameManager.OnVictory -= showVictory;
     }
 
     void showGameOver()
@@ -25,7 +27,7 @@ public class UI_Manager : MonoBehaviour
     
     void showVictory()
     {
-        
+        _VictoryText.SetActive(true);
     }
     
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BalloonHit : MonoBehaviour
@@ -34,10 +35,14 @@ public class BalloonHit : MonoBehaviour
             if (m_SmallerBalloonPrefab != null)
             {
                 SpawnSmallerBalloons();
+                GameManager.Instance.RegisterBall();
+                GameManager.Instance.RegisterBall();
             }
             
+            GameManager.Instance.UnregisterBall();
+            
             GameManager.Instance.UpdateScore(_points);
-
+            
             Destroy(gameObject, 0.5f);
         }
     }
