@@ -25,6 +25,7 @@ public class BalloonHit : MonoBehaviour
         int bulletLayer = LayerMask.NameToLayer("Bullet");
         if (collision.gameObject.layer == bulletLayer)
         {
+            AudioManager.Instance.PlaySFX("balloonPop", .25f);
             m_Rb.constraints = RigidbodyConstraints.FreezeAll;
             m_Collider.enabled = false;
             

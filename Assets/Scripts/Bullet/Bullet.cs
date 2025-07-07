@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
+        AudioManager.Instance.PlaySFX("bulletImpact", .05f);
+        
         m_Rb.constraints = RigidbodyConstraints.FreezeAll;
         
         int obstacleLayer = LayerMask.NameToLayer("Obstacle");

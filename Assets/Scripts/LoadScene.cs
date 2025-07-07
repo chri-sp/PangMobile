@@ -35,6 +35,7 @@ public class LoadScene : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3.5f);
         Time.timeScale = 1f;
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadSceneAsync(0);
     }
 
@@ -45,6 +46,7 @@ public class LoadScene : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(3f);
         Time.timeScale = 1f;
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadSceneAsync(0);
     }
 

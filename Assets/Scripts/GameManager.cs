@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
+    void Start()
+    {
+        AudioManager.Instance.PlayMusic("gameBGM", .05f);
+    }
+
     void Update()
     {
         //HandlePauseResumeInput();
@@ -73,6 +78,7 @@ public class GameManager : MonoBehaviour
         if (_currentState != GameState.Playing) return;
         _currentState = GameState.GameOver;
         Time.timeScale = 0f;
+        AudioManager.Instance.PlaySFX("gameover", .25f);
         OnGameOver?.Invoke();
     }
 
@@ -108,6 +114,7 @@ public class GameManager : MonoBehaviour
 
     void Victory()
     {
+        AudioManager.Instance.PlaySFX("victory", .25f);
         OnVictory?.Invoke();
     }
 

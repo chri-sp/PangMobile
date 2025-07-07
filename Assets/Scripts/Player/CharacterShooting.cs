@@ -39,6 +39,7 @@ public class CharacterShooting : MonoBehaviour
     {
         m_CanShoot = false;
         MuzzleFlash();
+        AudioManager.Instance.PlaySFX("shoot");
         
         Instantiate(m_BulletPrefab, m_FirePoint.position, m_FirePoint.rotation);
             
