@@ -1,7 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
+    
+    private InputSystem_Actions _inputActions;
+    private InputAction _moveAction;
+    
     [SerializeField] private float m_Speed = 5f;
     private Rigidbody m_Rb;
     private float m_Horizontal;
@@ -14,13 +19,32 @@ public class CharacterMovement : MonoBehaviour
     {
         m_Rb = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
+        
+        _inputActions = new InputSystem_Actions();
+        _moveAction = _inputActions.Player.Move;
+    }
+    
+    void OnEnable()
+    {
+        _inputActions.Enable();
+    }
+    
+    void OnDisable()
+    {
+        _inputActions.Disable();
+    }
+    
+    void OnDestroy()
+    {
+        _inputActions?.Dispose();
     }
 
     void Update()
     {
         if (GameManager.Instance.CurrentState != GameState.Playing) return;
         
-        m_Horizontal = Input.GetAxisRaw("Horizontal");
+        Vector2 moveInput = _moveAction.ReadValue<Vector2>();
+        m_Horizontal = moveInput.x;
         Flip();
         
         //check horizontal velocity to avoid walk animation against a wall

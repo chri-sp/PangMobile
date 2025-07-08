@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterShooting : MonoBehaviour
 {
 
+    private InputSystem_Actions inputActions;
+    private InputAction _shootAction;
+    
     [SerializeField] private GameObject m_MuzzleFlash;
     
     private Rigidbody m_Rb;
@@ -23,13 +27,32 @@ public class CharacterShooting : MonoBehaviour
     {
         m_Rb = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
+        
+        inputActions = new InputSystem_Actions();
+        _shootAction = inputActions.Player.Attack;
+    }
+    
+    void OnEnable()
+    {
+        inputActions.Enable();
+    }
+    
+    void OnDisable()
+    {
+        inputActions.Disable();
+    }
+    
+    
+    void OnDestroy()
+    {
+        inputActions?.Dispose();
     }
 
     void Update()
     {
         if (GameManager.Instance.CurrentState != GameState.Playing) return;
         
-        if (Input.GetKeyDown(KeyCode.S) && m_CanShoot)
+        if (_shootAction.WasPressedThisFrame() && m_CanShoot)
         {
             Shoot();
         }
